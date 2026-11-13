@@ -821,16 +821,298 @@ svg {
   outline-color: var(--cor-sobre-destaque);
 }
 
-/* ---------- 12. Simulação (base para a Etapa 2) ---------- */
+/* ---------- 12. Simulação ---------- */
+.painel-dia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-3) var(--esp-4);
+  padding: var(--esp-4) 0;
+  border-bottom: 1px solid var(--cor-linha);
+}
+
+.painel-dia p {
+  margin: 0;
+}
+
+.painel-dia-local {
+  flex: 1 1 18rem;
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+}
+
+.painel-dia-unidade {
+  font-weight: 700;
+  color: var(--cor-texto);
+  font-size: 1rem;
+}
+
+.painel-dia-contador {
+  font-weight: 700;
+}
+
+.painel-dia-contador strong {
+  display: inline-block;
+  min-width: 2.5rem;
+  margin-left: var(--esp-1);
+  padding: 0 var(--esp-2);
+  border-radius: var(--raio-p);
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-m);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
 .simulacao-layout {
   display: grid;
-  gap: 0 var(--esp-5);
+  gap: var(--esp-5);
+  padding: var(--esp-5) 0 var(--esp-6);
+}
+
+.simulacao-ajuda {
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+}
+
+.periodo-titulo {
+  font-size: 1rem;
+  color: var(--cor-texto-suave);
+  margin: var(--esp-4) 0 var(--esp-2);
 }
 
 .grade-agenda {
   display: grid;
   gap: var(--esp-3);
   grid-template-columns: 1fr;
+}
+
+/* Cartão de horário */
+.horario-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-linha);
+  border-radius: var(--raio-m);
+  padding: var(--esp-3);
+}
+
+.horario-cartao p {
+  margin: 0;
+}
+
+.horario-cartao-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+.horario-cartao-hora {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  line-height: 1.2;
+  font-size: var(--texto-m);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.horario-cartao-especialidade {
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+}
+
+.horario-cartao-paciente {
+  font-weight: 700;
+}
+
+.horario-cartao-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+  margin-top: var(--esp-2);
+}
+
+.horario-cartao-original {
+  color: var(--cor-texto-suave);
+}
+
+.horario-cartao-recebido {
+  font-weight: 700;
+  color: var(--cor-destaque-escuro);
+}
+
+.horario-cartao-motivo {
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+  line-height: 1.45;
+}
+
+.horario-cartao--confirmado {
+  border-color: var(--cor-destaque);
+}
+
+.horario-cartao--reaproveitado {
+  background: var(--cor-destaque-claro);
+  border-color: var(--cor-destaque);
+}
+
+.horario-cartao--encaixe {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--cor-texto-suave);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .horario-cartao--reaproveitado,
+  .horario-cartao--encaixe {
+    animation: vaga-volta-cartao 700ms ease-out;
+  }
+}
+
+@keyframes vaga-volta-cartao {
+  from {
+    background: var(--cor-superficie);
+  }
+}
+
+/* Coluna lateral: histórico e fila */
+.simulacao-lateral {
+  display: grid;
+  gap: var(--esp-5);
+  align-content: start;
+}
+
+.historico-lista,
+.fila-lista,
+.historico-descartes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.historico-lista {
+  display: grid;
+  gap: var(--esp-3);
+}
+
+.historico-vazio,
+.fila-vazia {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-pp);
+  padding: var(--esp-3);
+  border: 1px dashed var(--cor-linha);
+  border-radius: var(--raio-m);
+}
+
+.historico-item {
+  border-left: 4px solid var(--cor-destaque);
+  padding: var(--esp-1) 0 var(--esp-1) var(--esp-3);
+}
+
+.historico-item:first-child {
+  background: var(--cor-superficie);
+  padding: var(--esp-3);
+  border-radius: 0 var(--raio-m) var(--raio-m) 0;
+}
+
+.historico-item p {
+  margin: 0 0 var(--esp-1);
+}
+
+.historico-contexto {
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+}
+
+.historico-motivo {
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+}
+
+.historico-detalhes {
+  margin-top: var(--esp-2);
+  font-size: var(--texto-pp);
+}
+
+.historico-detalhes summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--cor-destaque);
+  padding: var(--esp-1) 0;
+}
+
+.historico-descartes {
+  margin-top: var(--esp-2);
+  display: grid;
+  gap: var(--esp-1);
+}
+
+.fila-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--esp-3);
+}
+
+.fila-total {
+  margin: 0;
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+}
+
+.fila-filtro {
+  margin-bottom: var(--esp-3);
+}
+
+.fila-item {
+  padding: var(--esp-3) 0;
+  border-bottom: 1px solid var(--cor-linha);
+}
+
+.fila-item p {
+  margin: 0;
+}
+
+.fila-item-nome {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+.fila-item-local {
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+}
+
+.fila-item .fila-item-dados {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-1) var(--esp-3);
+  margin-top: var(--esp-2);
+  font-size: var(--texto-pp);
+}
+
+.fila-item .fila-item-pontos {
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+  margin-top: var(--esp-1);
+}
+
+.fila-item--saindo {
+  background: var(--cor-destaque-claro);
+  border-radius: var(--raio-p);
+  padding-left: var(--esp-3);
+  padding-right: var(--esp-3);
+}
+
+.fila-item .fila-item-agendado {
+  margin-top: var(--esp-2);
+  font-weight: 700;
+  color: var(--cor-destaque-escuro);
 }
 
 /* ---------- 13. Formulário (base para a Etapa 3) ---------- */
@@ -1032,11 +1314,11 @@ main:has(.chamada-final) + .rodape {
   }
 
   .simulacao-layout {
-    grid-template-columns: 1fr 20rem;
+    grid-template-columns: 1fr 22rem;
     align-items: start;
   }
 
   .grade-agenda {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }

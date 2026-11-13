@@ -35,32 +35,56 @@
       <div class="cabecalho-pagina">
         <h1>Simulação</h1>
         <p>A agenda de um dia no ambulatório, vista por quem trabalha na regulação. Marque uma falta ou uma liberação e veja para quem a vaga vai.</p>
-        <p class="placeholder">Todos os nomes são fictícios.</p>
+        <p>Todos os nomes são fictícios.</p>
+      </div>
+
+      <div class="painel-dia">
+        <div class="painel-dia-local">
+          <p id="unidade" class="painel-dia-unidade"></p>
+          <p>Hoje, <span id="data-hoje"></span></p>
+        </div>
+        <p class="painel-dia-contador">Vagas recuperadas hoje: <strong id="contador">0</strong></p>
+        <button type="button" id="reiniciar" class="botao botao--secundario botao--pequeno">Reiniciar demonstração</button>
       </div>
 
       <div class="simulacao-layout">
-        <section class="secao" aria-labelledby="titulo-agenda">
+        <section class="simulacao-agenda" aria-labelledby="titulo-agenda">
           <h2 id="titulo-agenda">Agenda</h2>
-          <p class="placeholder">[A agenda com 12 horários entra na Etapa 2.]</p>
+          <p class="simulacao-ajuda">Liberar (D-1): o paciente avisou na véspera, então a vaga pode ir para quem mora a até 60 min. Faltou: a falta é no dia, então só chega a tempo quem mora a até 20 min.</p>
+
+          <h3 class="periodo-titulo">Manhã</h3>
+          <div class="grade-agenda" id="agenda-manha"></div>
+
+          <h3 class="periodo-titulo">Tarde</h3>
+          <div class="grade-agenda" id="agenda-tarde"></div>
         </section>
 
-        <section class="secao" aria-labelledby="titulo-fila">
-          <h2 id="titulo-fila">Fila</h2>
-          <p class="placeholder">[A fila de reaproveitamento entra na Etapa 2.]</p>
-          <p>Exemplo de selos de risco:</p>
-          <p class="acoes">
-            <span class="selo selo--vermelho"><span class="selo-icone" aria-hidden="true">▲</span> Risco vermelho</span>
-            <span class="selo selo--amarelo"><span class="selo-icone" aria-hidden="true">◆</span> Risco amarelo</span>
-            <span class="selo selo--verde"><span class="selo-icone" aria-hidden="true">●</span> Risco verde</span>
-            <span class="selo selo--azul"><span class="selo-icone" aria-hidden="true">■</span> Risco azul</span>
-          </p>
-        </section>
+        <div class="simulacao-lateral">
+          <section class="historico" aria-labelledby="titulo-historico">
+            <h2 id="titulo-historico">Por que essa pessoa?</h2>
+            <ol id="historico" class="historico-lista"></ol>
+          </section>
+
+          <section class="fila" aria-labelledby="titulo-fila">
+            <div class="fila-topo">
+              <h2 id="titulo-fila">Fila</h2>
+              <p id="fila-total" class="fila-total"></p>
+            </div>
+            <div class="campo fila-filtro">
+              <label for="filtro-especialidade">Especialidade</label>
+              <select id="filtro-especialidade">
+                <option value="todas">Todas</option>
+                <option value="Cardiologia">Cardiologia</option>
+                <option value="Ortopedia">Ortopedia</option>
+                <option value="Oftalmologia">Oftalmologia</option>
+              </select>
+            </div>
+            <ul id="fila" class="fila-lista"></ul>
+          </section>
+        </div>
       </div>
 
-      <section class="secao" aria-labelledby="titulo-historico">
-        <h2 id="titulo-historico">Por que essa pessoa?</h2>
-        <p class="placeholder">[O histórico de realocações entra na Etapa 2.]</p>
-      </section>
+      <div id="anuncios" aria-live="polite" class="sr-only"></div>
     </div>
   </main>
 
@@ -69,5 +93,8 @@
       <p>Bug Hunters · FIAP 1ESOR · Global Solution 2026/2</p>
     </div>
   </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/simulacao.js"></script>
 </body>
 </html>
