@@ -885,7 +885,7 @@ svg {
 .grade-agenda {
   display: grid;
   gap: var(--esp-3);
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
 }
 
 /* Cartão de horário */
@@ -1360,6 +1360,191 @@ main:has(.chamada-final) + .rodape {
   margin: 0;
 }
 
+/* Espaço para o botão fixo de acessibilidade não cobrir o rodapé */
+body {
+  padding-bottom: 4.5rem;
+}
+
+/* ---------- 15b. Painel de acessibilidade ---------- */
+.a11y {
+  position: fixed;
+  right: var(--esp-3);
+  bottom: var(--esp-3);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--esp-2);
+}
+
+.a11y-alternar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  min-height: 3rem;
+  padding: var(--esp-2) var(--esp-4) var(--esp-2) var(--esp-3);
+  border: 2px solid var(--cor-fundo);
+  border-radius: 999px;
+  background: var(--cor-texto);
+  color: var(--cor-fundo);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px -10px rgba(20, 32, 31, 0.6);
+}
+
+.a11y-alternar:hover {
+  background: var(--cor-destaque-escuro);
+}
+
+.a11y-alternar[aria-expanded="true"] {
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+}
+
+.a11y-alternar svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.a11y-alternar svg circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+.painel-a11y {
+  width: min(20rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+  background: var(--cor-superficie);
+  border: 2px solid var(--cor-texto);
+  border-radius: var(--raio-m);
+  padding: var(--esp-3);
+  display: grid;
+  gap: var(--esp-2);
+  box-shadow: 0 18px 40px -20px rgba(20, 32, 31, 0.5);
+}
+
+.painel-a11y[hidden] {
+  display: none;
+}
+
+.painel-a11y-titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 1.125rem;
+  margin: 0 0 var(--esp-1);
+}
+
+.painel-a11y-botao {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0 var(--esp-2);
+  width: 100%;
+  min-height: 3rem;
+  padding: var(--esp-2) var(--esp-3);
+  border: 1px solid var(--cor-linha);
+  border-radius: var(--raio-p);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font: inherit;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.painel-a11y-botao:hover {
+  border-color: var(--cor-texto);
+}
+
+.painel-a11y-acao {
+  font-weight: 700;
+}
+
+.painel-a11y-detalhe {
+  grid-column: 1;
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+}
+
+.painel-a11y-estado {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  font-size: var(--texto-pp);
+  font-weight: 700;
+  padding: 0.125rem var(--esp-2);
+  border-radius: 999px;
+  border: 1px solid var(--cor-linha);
+  color: var(--cor-texto-suave);
+}
+
+.painel-a11y-botao[aria-pressed="true"] {
+  border-color: var(--cor-destaque);
+}
+
+.painel-a11y-botao[aria-pressed="true"] .painel-a11y-estado {
+  background: var(--cor-destaque);
+  border-color: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+}
+
+.painel-a11y-fonte {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-2);
+  padding: var(--esp-2) var(--esp-1) 0;
+}
+
+.painel-a11y-fonte-controles {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+.painel-a11y-fonte-botao {
+  min-width: 3rem;
+  min-height: 2.75rem;
+  border: 2px solid var(--cor-destaque);
+  border-radius: var(--raio-p);
+  background: transparent;
+  color: var(--cor-destaque);
+  font-family: var(--fonte-titulo);
+  font-size: 1.0625rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.painel-a11y-fonte-botao:hover {
+  background: var(--cor-destaque-claro);
+}
+
+.painel-a11y-fonte-botao:disabled {
+  border-color: var(--cor-linha);
+  color: var(--cor-texto-suave);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.painel-a11y-fonte-valor {
+  min-width: 3rem;
+  text-align: center;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+body.alto-contraste .a11y-alternar {
+  border-color: var(--cor-destaque);
+}
+
 /* ---------- 16. Tablet: 768px ---------- */
 @media (min-width: 768px) {
   :root {
@@ -1419,9 +1604,6 @@ main:has(.chamada-final) + .rodape {
     top: -0.5625rem;
   }
 
-  .grade-agenda {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 /* ---------- 17. Desktop: 1024px ---------- */
@@ -1467,11 +1649,8 @@ main:has(.chamada-final) + .rodape {
   }
 
   .simulacao-layout {
-    grid-template-columns: 1fr 22rem;
+    grid-template-columns: minmax(0, 1fr) 22rem;
     align-items: start;
   }
 
-  .grade-agenda {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
