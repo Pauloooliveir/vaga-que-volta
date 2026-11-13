@@ -46,7 +46,7 @@
         <p class="formulario-nota">Todos os campos são obrigatórios.</p>
 
         <div id="resumo-erros" class="resumo-erros" tabindex="-1" hidden>
-          <h3 id="resumo-titulo" class="resumo-erros-titulo"></h3>
+          <h3 id="resumo-titulo" class="resumo-erros-titulo">Falta corrigir alguns campos</h3>
           <ul id="resumo-lista"></ul>
         </div>
 
@@ -60,7 +60,7 @@
           <div class="campo">
             <label for="whatsapp">WhatsApp</label>
             <p class="dica" id="dica-whatsapp">Com DDD. Exemplo: (51) 99999-1234</p>
-            <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel-national" inputmode="numeric" aria-describedby="dica-whatsapp erro-whatsapp">
+            <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" inputmode="numeric" aria-describedby="dica-whatsapp erro-whatsapp">
             <p class="erro" id="erro-whatsapp"></p>
           </div>
 
@@ -114,7 +114,7 @@
       </section>
 
       <section class="secao confirmacao" id="confirmacao" aria-labelledby="titulo-confirmacao" hidden>
-        <h2 id="titulo-confirmacao" tabindex="-1"></h2>
+        <h2 id="titulo-confirmacao" tabindex="-1">Você entrou na fila</h2>
         <dl class="confirmacao-dados">
           <div>
             <dt>Risco (sorteado)</dt>
