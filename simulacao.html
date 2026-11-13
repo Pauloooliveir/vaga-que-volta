@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulação | Vaga que Volta</title>
+  <meta name="description" content="Agenda de demonstração: marque uma falta ou uma liberação e veja para quem a vaga vai, e por quê.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container">
+      <a class="marca" href="index.html">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M26 16a10 10 0 1 1-3-7.1"/><path d="M24 3v6.5h-6.5"/></svg>
+        Vaga que Volta
+      </a>
+      <nav class="menu" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="simulacao.html" aria-current="page">Simulação</a></li>
+          <li><a href="fila.html">Entrar na fila</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <div class="container">
+      <div class="cabecalho-pagina">
+        <h1>Simulação</h1>
+        <p>A agenda de um dia no ambulatório, vista por quem trabalha na regulação. Marque uma falta ou uma liberação e veja para quem a vaga vai.</p>
+        <p class="placeholder">Todos os nomes são fictícios.</p>
+      </div>
+
+      <div class="simulacao-layout">
+        <section class="secao" aria-labelledby="titulo-agenda">
+          <h2 id="titulo-agenda">Agenda</h2>
+          <p class="placeholder">[A agenda com 12 horários entra na Etapa 2.]</p>
+        </section>
+
+        <section class="secao" aria-labelledby="titulo-fila">
+          <h2 id="titulo-fila">Fila</h2>
+          <p class="placeholder">[A fila de reaproveitamento entra na Etapa 2.]</p>
+          <p>Exemplo de selos de risco:</p>
+          <p class="acoes">
+            <span class="selo selo--vermelho"><span class="selo-icone" aria-hidden="true">▲</span> Risco vermelho</span>
+            <span class="selo selo--amarelo"><span class="selo-icone" aria-hidden="true">◆</span> Risco amarelo</span>
+            <span class="selo selo--verde"><span class="selo-icone" aria-hidden="true">●</span> Risco verde</span>
+            <span class="selo selo--azul"><span class="selo-icone" aria-hidden="true">■</span> Risco azul</span>
+          </p>
+        </section>
+      </div>
+
+      <section class="secao" aria-labelledby="titulo-historico">
+        <h2 id="titulo-historico">Por que essa pessoa?</h2>
+        <p class="placeholder">[O histórico de realocações entra na Etapa 2.]</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>Bug Hunters · FIAP 1ESOR · Global Solution 2026/2</p>
+    </div>
+  </footer>
+</body>
+</html>

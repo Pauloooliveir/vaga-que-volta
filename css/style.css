@@ -1,0 +1,863 @@
+/* ==========================================================
+   Vaga que Volta — estilos
+   Mobile-first. Pontos de quebra: 768px e 1024px.
+   Paleta: creme + verde (única cor de destaque) + quase preto.
+   As únicas outras cores são os selos de risco do SUS.
+   ========================================================== */
+
+/* ---------- 1. Variáveis ---------- */
+:root {
+  /* Cores base */
+  --cor-fundo: #F3F0E8;
+  --cor-superficie: #FBFAF6;
+  --cor-texto: #14201F;
+  --cor-texto-suave: #4A5654;
+  --cor-destaque: #1F6F6B;
+  --cor-destaque-escuro: #164F4C;
+  --cor-destaque-claro: #DCE9E6;
+  --cor-linha: #D6D0C2;
+  --cor-sobre-destaque: #FFFFFF;
+  --cor-foco: #14201F;
+  --cor-erro: #9A2A1C;
+
+  /* Selos de risco (texto escuro sobre fundo claro, contraste > 7:1) */
+  --risco-vermelho-fundo: #F6D6D1;
+  --risco-vermelho-texto: #7A1A12;
+  --risco-amarelo-fundo: #F5E4A3;
+  --risco-amarelo-texto: #5A4300;
+  --risco-verde-fundo: #D4EAD3;
+  --risco-verde-texto: #1C4F27;
+  --risco-azul-fundo: #D5E3F4;
+  --risco-azul-texto: #173D6C;
+
+  /* Tipografia */
+  --fonte-texto: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --fonte-titulo: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --escala-fonte: 1; /* 1 · 1.15 · 1.3 (painel de acessibilidade, Etapa 4) */
+
+  --texto-p: 1rem;
+  --texto-m: 1.25rem;
+  --texto-g: 1.5625rem;
+  --texto-gg: 2.25rem;
+  --texto-hero: 2.5rem;
+
+  /* Espaçamento e forma */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 1rem;
+  --esp-4: 1.5rem;
+  --esp-5: 2.5rem;
+  --esp-6: 4rem;
+  --raio-p: 4px;
+  --raio-m: 10px;
+  --largura-max: 72rem;
+  --largura-texto: 38rem;
+}
+
+/* Alto contraste (ligado pelo painel de acessibilidade na Etapa 4) */
+body.alto-contraste {
+  --cor-fundo: #000000;
+  --cor-superficie: #000000;
+  --cor-texto: #FFFFFF;
+  --cor-texto-suave: #FFFFFF;
+  --cor-destaque: #FFE14D;
+  --cor-destaque-escuro: #FFE14D;
+  --cor-destaque-claro: #000000;
+  --cor-linha: #FFFFFF;
+  --cor-sobre-destaque: #000000;
+  --cor-foco: #FFE14D;
+  --cor-erro: #FF8A7A;
+
+  --risco-vermelho-fundo: #000000;
+  --risco-vermelho-texto: #FFFFFF;
+  --risco-amarelo-fundo: #000000;
+  --risco-amarelo-texto: #FFFFFF;
+  --risco-verde-fundo: #000000;
+  --risco-verde-texto: #FFFFFF;
+  --risco-azul-fundo: #000000;
+  --risco-azul-texto: #FFFFFF;
+}
+
+body.alto-contraste .selo,
+body.alto-contraste .cartao,
+body.alto-contraste .agenda-exemplo {
+  border: 2px solid var(--cor-texto);
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(100% * var(--escala-fonte));
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-p);
+  line-height: 1.55;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--esp-3);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--texto-gg);
+}
+
+h2 {
+  font-size: var(--texto-g);
+}
+
+h3 {
+  font-size: var(--texto-m);
+}
+
+p {
+  margin: 0 0 var(--esp-3);
+  max-width: var(--largura-texto);
+}
+
+a {
+  color: var(--cor-destaque);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--cor-destaque-escuro);
+  text-decoration-thickness: 2px;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Foco visível em tudo que é interativo */
+:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 3px;
+  border-radius: var(--raio-p);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: 0 var(--esp-3);
+}
+
+/* ---------- 3. Pular para o conteúdo ---------- */
+.pular {
+  position: absolute;
+  left: var(--esp-3);
+  top: -4rem;
+  z-index: 100;
+  background: var(--cor-texto);
+  color: var(--cor-fundo);
+  padding: var(--esp-2) var(--esp-3);
+  border-radius: var(--raio-p);
+  font-weight: 700;
+}
+
+.pular:focus {
+  top: var(--esp-3);
+  color: var(--cor-fundo);
+}
+
+/* ---------- 4. Cabeçalho e menu ---------- */
+.topo {
+  border-bottom: 1px solid var(--cor-linha);
+}
+
+.topo .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-2) var(--esp-4);
+  padding-top: var(--esp-3);
+  padding-bottom: var(--esp-3);
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  color: var(--cor-texto);
+  text-decoration: none;
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: var(--texto-m);
+  letter-spacing: -0.02em;
+}
+
+.marca:hover {
+  color: var(--cor-texto);
+}
+
+.marca svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--cor-destaque);
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--esp-1);
+}
+
+.menu a {
+  display: block;
+  padding: var(--esp-2) var(--esp-1);
+  border-radius: var(--raio-p);
+  color: var(--cor-texto);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.menu a:hover {
+  background: var(--cor-destaque-claro);
+  color: var(--cor-texto);
+}
+
+.menu a[aria-current="page"] {
+  color: var(--cor-destaque);
+  box-shadow: inset 0 -3px 0 var(--cor-destaque);
+  border-radius: 0;
+}
+
+/* ---------- 5. Botões ---------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  min-height: 2.75rem;
+  padding: var(--esp-2) var(--esp-4);
+  border: 2px solid var(--cor-destaque);
+  border-radius: var(--raio-p);
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.botao:hover {
+  background: var(--cor-destaque-escuro);
+  border-color: var(--cor-destaque-escuro);
+  color: var(--cor-sobre-destaque);
+  text-decoration: none;
+}
+
+.botao--secundario {
+  background: transparent;
+  color: var(--cor-destaque);
+}
+
+.botao--secundario:hover {
+  background: var(--cor-destaque-claro);
+  color: var(--cor-destaque-escuro);
+}
+
+.botao--pequeno {
+  min-height: 2.25rem;
+  padding: var(--esp-1) var(--esp-3);
+  font-size: 0.9375rem;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-3);
+}
+
+/* ---------- 6. Selos ---------- */
+.selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.125rem var(--esp-2);
+  border-radius: var(--raio-p);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* Ícone do selo: forma diferente por risco, para não depender da cor */
+.selo-icone {
+  font-size: 0.75em;
+  line-height: 1;
+}
+
+.selo--vermelho {
+  background: var(--risco-vermelho-fundo);
+  color: var(--risco-vermelho-texto);
+}
+
+.selo--amarelo {
+  background: var(--risco-amarelo-fundo);
+  color: var(--risco-amarelo-texto);
+}
+
+.selo--verde {
+  background: var(--risco-verde-fundo);
+  color: var(--risco-verde-texto);
+}
+
+.selo--azul {
+  background: var(--risco-azul-fundo);
+  color: var(--risco-azul-texto);
+}
+
+/* Selos de status da agenda (usam só o verde e neutros) */
+.selo--aguardando {
+  border: 1px solid var(--cor-linha);
+  color: var(--cor-texto-suave);
+}
+
+.selo--confirmado {
+  background: var(--cor-destaque-claro);
+  color: var(--cor-destaque-escuro);
+}
+
+.selo--liberado {
+  border: 1px dashed var(--cor-destaque);
+  color: var(--cor-destaque-escuro);
+}
+
+.selo--faltou {
+  background: var(--cor-texto);
+  color: var(--cor-fundo);
+}
+
+.selo--reaproveitado {
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+}
+
+.selo--encaixe {
+  border: 1px dotted var(--cor-texto-suave);
+  color: var(--cor-texto);
+}
+
+.selo--voce {
+  background: var(--cor-texto);
+  color: var(--cor-fundo);
+}
+
+/* ---------- 7. Seções e cartões ---------- */
+.secao {
+  padding: var(--esp-5) 0;
+}
+
+.secao + .secao {
+  border-top: 1px solid var(--cor-linha);
+}
+
+.secao-intro {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-m);
+  line-height: 1.45;
+}
+
+.cartao {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-linha);
+  border-radius: var(--raio-m);
+  padding: var(--esp-4);
+}
+
+.cabecalho-pagina {
+  padding: var(--esp-5) 0 var(--esp-3);
+}
+
+.cabecalho-pagina p {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-m);
+  line-height: 1.45;
+}
+
+.aviso {
+  border-left: 4px solid var(--cor-destaque);
+  background: var(--cor-superficie);
+  padding: var(--esp-3) var(--esp-4);
+  border-radius: 0 var(--raio-p) var(--raio-p) 0;
+  max-width: var(--largura-texto);
+}
+
+.aviso p:last-child {
+  margin-bottom: 0;
+}
+
+.placeholder {
+  color: var(--cor-texto-suave);
+  font-style: italic;
+}
+
+/* ---------- 8. Início: hero ---------- */
+.hero {
+  padding: var(--esp-5) 0 var(--esp-6);
+}
+
+.hero .container {
+  display: grid;
+  gap: var(--esp-5);
+}
+
+.hero-titulo {
+  font-size: var(--texto-hero);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--esp-4);
+}
+
+.hero-titulo span {
+  display: block;
+}
+
+.hero-titulo span + span {
+  color: var(--cor-destaque);
+}
+
+.hero-texto {
+  font-size: var(--texto-m);
+  line-height: 1.45;
+  color: var(--cor-texto-suave);
+  margin-bottom: var(--esp-4);
+}
+
+/* Ficha de agenda ilustrativa: o momento marcante da página */
+.agenda-exemplo {
+  margin: 0;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-linha);
+  border-radius: var(--raio-m);
+  padding: var(--esp-3);
+  align-self: start;
+}
+
+.agenda-exemplo ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.horario {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: var(--esp-1) var(--esp-3);
+  padding: var(--esp-3) var(--esp-2);
+  border-bottom: 1px solid var(--cor-linha);
+}
+
+.horario:last-child {
+  border-bottom: 0;
+}
+
+.horario-hora {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: var(--texto-m);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.horario-detalhe {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-1) var(--esp-2);
+}
+
+.horario-especialidade {
+  width: 100%;
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+}
+
+.horario-paciente {
+  font-weight: 700;
+}
+
+.horario--troca {
+  background: var(--cor-destaque-claro);
+  border-radius: var(--raio-p);
+}
+
+.horario--troca .horario-antes {
+  text-decoration: line-through;
+  color: var(--cor-texto-suave);
+  font-weight: 400;
+}
+
+.horario-motivo {
+  grid-column: 2;
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+  margin: 0;
+}
+
+.agenda-exemplo figcaption {
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+  padding: var(--esp-2) var(--esp-2) 0;
+}
+
+/* Animação única: a vaga perdida volta para alguém da fila */
+@media (prefers-reduced-motion: no-preference) {
+  .horario--troca {
+    animation: vaga-volta 900ms 900ms both cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .horario--troca .horario-novo,
+  .horario--troca .horario-motivo,
+  .horario--troca .selo--reaproveitado {
+    animation: aparece 500ms 1500ms both ease-out;
+  }
+}
+
+@keyframes vaga-volta {
+  from {
+    background: transparent;
+  }
+  to {
+    background: var(--cor-destaque-claro);
+  }
+}
+
+@keyframes aparece {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- 9. Início: o dado ---------- */
+.dado {
+  display: grid;
+  gap: var(--esp-4);
+  align-items: center;
+}
+
+.dado-numero {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: var(--texto-gg);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  display: block;
+  margin-bottom: var(--esp-2);
+}
+
+.dado-frase {
+  font-size: var(--texto-m);
+  line-height: 1.4;
+}
+
+.dado-fonte {
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+}
+
+/* 100 cadeiras; as 13 últimas ficam vazias (13%) */
+.cadeiras {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  max-width: 17rem;
+}
+
+.cadeiras span {
+  aspect-ratio: 1;
+  border-radius: 3px 3px 1px 1px;
+  background: var(--cor-destaque);
+}
+
+.cadeiras span:nth-child(n + 88) {
+  background: transparent;
+  border: 2px solid var(--cor-texto);
+}
+
+.cadeiras-legenda {
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+  margin-top: var(--esp-2);
+}
+
+/* ---------- 10. Início: como funciona ---------- */
+.passos {
+  list-style: none;
+  counter-reset: passo;
+  margin: var(--esp-4) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-4);
+}
+
+.passos li {
+  counter-increment: passo;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: var(--esp-3);
+  align-items: start;
+}
+
+.passos li::before {
+  content: counter(passo);
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--cor-destaque);
+  border-radius: 50%;
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  color: var(--cor-destaque);
+}
+
+.passos h3 {
+  margin-bottom: var(--esp-1);
+  padding-top: 0.35rem;
+}
+
+.passos p {
+  margin: 0;
+  color: var(--cor-texto-suave);
+}
+
+.chamada-final {
+  padding: var(--esp-5) 0 var(--esp-6);
+}
+
+/* ---------- 11. Simulação (base para a Etapa 2) ---------- */
+.simulacao-layout {
+  display: grid;
+  gap: var(--esp-5);
+}
+
+.grade-agenda {
+  display: grid;
+  gap: var(--esp-3);
+  grid-template-columns: 1fr;
+}
+
+/* ---------- 12. Formulário (base para a Etapa 3) ---------- */
+.formulario {
+  display: grid;
+  gap: var(--esp-4);
+  max-width: var(--largura-texto);
+}
+
+.campo {
+  display: grid;
+  gap: var(--esp-1);
+}
+
+.campo label,
+.campo legend {
+  font-weight: 700;
+}
+
+.campo input[type="text"],
+.campo input[type="tel"],
+.campo select {
+  font: inherit;
+  color: var(--cor-texto);
+  background: var(--cor-superficie);
+  border: 2px solid var(--cor-texto-suave);
+  border-radius: var(--raio-p);
+  padding: var(--esp-2) var(--esp-3);
+  min-height: 2.75rem;
+  width: 100%;
+}
+
+.campo [aria-invalid="true"] {
+  border-color: var(--cor-erro);
+}
+
+.erro {
+  color: var(--cor-erro);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+.erro:empty {
+  display: none;
+}
+
+/* ---------- 13. Sobre ---------- */
+.sobre-secoes {
+  display: grid;
+  gap: 0;
+}
+
+.equipe {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-2);
+}
+
+.equipe li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  padding: var(--esp-2) 0;
+  border-bottom: 1px solid var(--cor-linha);
+  max-width: var(--largura-texto);
+}
+
+.lista-simples {
+  margin: 0;
+  padding-left: 1.25rem;
+  max-width: var(--largura-texto);
+}
+
+.lista-simples li + li {
+  margin-top: var(--esp-2);
+}
+
+/* ---------- 14. Rodapé ---------- */
+.rodape {
+  border-top: 1px solid var(--cor-linha);
+  padding: var(--esp-4) 0;
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+}
+
+.rodape p {
+  margin: 0;
+}
+
+/* ---------- 15. Tablet: 768px ---------- */
+@media (min-width: 768px) {
+  :root {
+    --texto-gg: 2.75rem;
+    --texto-hero: 3.5rem;
+  }
+
+  .container {
+    padding: 0 var(--esp-4);
+  }
+
+  .menu {
+    width: auto;
+  }
+
+  .menu a {
+    padding: var(--esp-2) var(--esp-3);
+  }
+
+  .secao {
+    padding: var(--esp-6) 0;
+  }
+
+  .dado {
+    grid-template-columns: 1fr auto;
+    gap: var(--esp-5);
+  }
+
+  .cadeiras {
+    width: 15rem;
+  }
+
+  .passos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--esp-5);
+  }
+
+  .passos li {
+    grid-template-columns: 1fr;
+  }
+
+  .passos h3 {
+    padding-top: 0;
+  }
+
+  .grade-agenda {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- 16. Desktop: 1024px ---------- */
+@media (min-width: 1024px) {
+  :root {
+    --texto-hero: 4.25rem;
+  }
+
+  .hero {
+    padding: var(--esp-6) 0;
+  }
+
+  .hero .container {
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    gap: var(--esp-6);
+  }
+
+  .simulacao-layout {
+    grid-template-columns: 1fr 20rem;
+    align-items: start;
+  }
+
+  .grade-agenda {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
