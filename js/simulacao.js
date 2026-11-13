@@ -457,11 +457,41 @@ function renderizarResumo() {
   document.querySelector("#contador").textContent = vagasRecuperadas;
 }
 
+// O link "Apagar meus cadastros" só aparece se houver cadastros salvos (recurso extra).
+function renderizarApagar() {
+  const botao = document.querySelector("#apagar-cadastros");
+  let temCadastros = false;
+  if (typeof vqvLerCadastros === "function") {
+    temCadastros = vqvLerCadastros().length > 0;
+  }
+  botao.hidden = !temCadastros;
+}
+
 function renderizar() {
   renderizarResumo();
   renderizarAgenda();
   renderizarFila();
   renderizarHistorico();
+  renderizarApagar();
+}
+
+// Apaga os cadastros salvos e tira da fila quem ainda estava esperando.
+function apagarCadastros() {
+  if (typeof vqvLimparCadastros !== "function") {
+    return;
+  }
+  vqvLimparCadastros();
+  const filaRestante = [];
+  for (let i = 0; i < estadoFila.length; i++) {
+    const p = estadoFila[i];
+    if (!(p.cadastroDoUsuario && p.status === "na fila")) {
+      filaRestante.push(p);
+    }
+  }
+  estadoFila = filaRestante;
+  renderizar();
+  anunciar("Seus cadastros foram apagados deste navegador.");
+  document.querySelector("#filtro-especialidade").focus();
 }
 
 // ---------- Início ----------
@@ -475,6 +505,7 @@ function iniciarSimulacao() {
 
   document.querySelector("#reiniciar").addEventListener("click", reiniciar);
   document.querySelector("#filtro-especialidade").addEventListener("change", renderizarFila);
+  document.querySelector("#apagar-cadastros").addEventListener("click", apagarCadastros);
 
   iniciarEstado();
   renderizar();

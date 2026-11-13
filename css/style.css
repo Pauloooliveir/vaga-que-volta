@@ -1102,6 +1102,15 @@ svg {
   margin-top: var(--esp-1);
 }
 
+.fila-rodape {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--esp-2) var(--esp-4);
+  margin-top: var(--esp-3);
+  font-size: var(--texto-pp);
+}
+
 .fila-item--saindo {
   background: var(--cor-destaque-claro);
   border-radius: var(--raio-p);
@@ -1145,9 +1154,6 @@ svg {
   width: 100%;
 }
 
-.campo [aria-invalid="true"] {
-  border-color: var(--cor-erro);
-}
 
 .erro {
   color: var(--cor-erro);
@@ -1158,6 +1164,153 @@ svg {
 
 .erro:empty {
   display: none;
+}
+
+.formulario-nota,
+.dica {
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+  margin: 0;
+}
+
+.formulario-nota {
+  margin-bottom: var(--esp-4);
+}
+
+.campo input[type="text"]:hover,
+.campo input[type="tel"]:hover,
+.campo select:hover {
+  border-color: var(--cor-texto);
+}
+
+.campo-grupo {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.campo-grupo legend {
+  padding: 0;
+  margin-bottom: var(--esp-2);
+}
+
+.opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2) var(--esp-4);
+}
+
+.opcao {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--esp-2);
+  font-weight: 400;
+  cursor: pointer;
+  padding: var(--esp-1) 0;
+}
+
+.campo .opcao {
+  font-weight: 400;
+}
+
+.opcao input {
+  width: 1.375rem;
+  height: 1.375rem;
+  margin: 0.1rem 0 0;
+  flex-shrink: 0;
+  accent-color: var(--cor-destaque);
+}
+
+.opcao--consentimento {
+  max-width: var(--largura-texto);
+}
+
+.campo input[aria-invalid="true"],
+.campo select[aria-invalid="true"] {
+  border-color: var(--cor-erro);
+}
+
+.opcao input[aria-invalid="true"] {
+  outline: 2px solid var(--cor-erro);
+  outline-offset: 1px;
+}
+
+/* Resumo de erros no topo do formulário */
+.resumo-erros {
+  max-width: var(--largura-texto);
+  border: 2px solid var(--cor-erro);
+  border-radius: var(--raio-m);
+  background: var(--cor-superficie);
+  padding: var(--esp-3) var(--esp-4);
+  margin-bottom: var(--esp-4);
+}
+
+.resumo-erros-titulo {
+  font-size: 1.125rem;
+  color: var(--cor-erro);
+  margin-bottom: var(--esp-2);
+}
+
+.resumo-erros ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.resumo-erros a {
+  color: var(--cor-erro);
+}
+
+/* Confirmação depois do cadastro */
+.confirmacao {
+  max-width: var(--largura-texto);
+}
+
+.confirmacao h2 {
+  color: var(--cor-destaque);
+}
+
+.confirmacao-dados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-3) var(--esp-5);
+  margin: var(--esp-4) 0;
+  padding: var(--esp-4) 0;
+  border-top: 1px solid var(--cor-linha);
+  border-bottom: 1px solid var(--cor-linha);
+}
+
+.confirmacao-dados dt {
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+  margin-bottom: var(--esp-1);
+}
+
+.confirmacao-dados dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.confirmacao-aviso {
+  color: var(--cor-texto-suave);
+}
+
+/* Botão com cara de link (ação pequena, como "Apagar meus cadastros") */
+.link-botao {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: var(--texto-pp);
+  color: var(--cor-destaque);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+
+.link-botao:hover {
+  color: var(--cor-destaque-escuro);
+  text-decoration-thickness: 2px;
 }
 
 /* ---------- 14. Sobre ---------- */

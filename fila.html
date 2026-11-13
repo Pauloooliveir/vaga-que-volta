@@ -41,9 +41,95 @@
         <p>Na vida real, sua classificação de risco vem do encaminhamento da sua UBS. Nesta demonstração, ela é sorteada.</p>
       </div>
 
-      <section class="secao" aria-labelledby="titulo-form">
+      <section class="secao" id="secao-formulario" aria-labelledby="titulo-form">
         <h2 id="titulo-form">Seus dados</h2>
-        <p class="placeholder">[O formulário entra na Etapa 3.]</p>
+        <p class="formulario-nota">Todos os campos são obrigatórios.</p>
+
+        <div id="resumo-erros" class="resumo-erros" tabindex="-1" hidden>
+          <h3 id="resumo-titulo" class="resumo-erros-titulo"></h3>
+          <ul id="resumo-lista"></ul>
+        </div>
+
+        <form id="form-fila" class="formulario" novalidate>
+          <div class="campo">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" aria-describedby="erro-nome">
+            <p class="erro" id="erro-nome"></p>
+          </div>
+
+          <div class="campo">
+            <label for="whatsapp">WhatsApp</label>
+            <p class="dica" id="dica-whatsapp">Com DDD. Exemplo: (51) 99999-1234</p>
+            <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel-national" inputmode="numeric" aria-describedby="dica-whatsapp erro-whatsapp">
+            <p class="erro" id="erro-whatsapp"></p>
+          </div>
+
+          <div class="campo">
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" name="bairro" autocomplete="address-level3" aria-describedby="erro-bairro">
+            <p class="erro" id="erro-bairro"></p>
+          </div>
+
+          <div class="campo">
+            <label for="tempo">Tempo até a unidade</label>
+            <p class="dica" id="dica-tempo">Quanto tempo você leva de casa até o ambulatório, do jeito que costuma ir.</p>
+            <select id="tempo" name="tempo" aria-describedby="dica-tempo erro-tempo">
+              <option value="">Escolha uma opção</option>
+              <option value="15">Até 15 min</option>
+              <option value="30">Até 30 min</option>
+              <option value="60">Até 60 min</option>
+            </select>
+            <p class="erro" id="erro-tempo"></p>
+          </div>
+
+          <div class="campo">
+            <label for="especialidade">Especialidade</label>
+            <select id="especialidade" name="especialidade" aria-describedby="erro-especialidade">
+              <option value="">Escolha uma opção</option>
+              <option value="Cardiologia">Cardiologia</option>
+              <option value="Ortopedia">Ortopedia</option>
+              <option value="Oftalmologia">Oftalmologia</option>
+            </select>
+            <p class="erro" id="erro-especialidade"></p>
+          </div>
+
+          <fieldset class="campo campo-grupo">
+            <legend>Períodos em que você pode ir</legend>
+            <div class="opcoes">
+              <label class="opcao"><input type="checkbox" id="periodo-manha" name="periodos" value="manha" aria-describedby="erro-periodos"> Manhã</label>
+              <label class="opcao"><input type="checkbox" id="periodo-tarde" name="periodos" value="tarde" aria-describedby="erro-periodos"> Tarde</label>
+            </div>
+            <p class="erro" id="erro-periodos"></p>
+          </fieldset>
+
+          <div class="campo">
+            <label class="opcao opcao--consentimento"><input type="checkbox" id="consentimento" name="consentimento" aria-describedby="erro-consentimento"> Aceito ser avisado(a) por WhatsApp quando uma vaga abrir</label>
+            <p class="erro" id="erro-consentimento"></p>
+          </div>
+
+          <div>
+            <button type="submit" class="botao">Entrar na fila</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="secao confirmacao" id="confirmacao" aria-labelledby="titulo-confirmacao" hidden>
+        <h2 id="titulo-confirmacao" tabindex="-1"></h2>
+        <dl class="confirmacao-dados">
+          <div>
+            <dt>Risco (sorteado)</dt>
+            <dd id="confirmacao-risco"></dd>
+          </div>
+          <div>
+            <dt>Espera (sorteada)</dt>
+            <dd id="confirmacao-espera"></dd>
+          </div>
+        </dl>
+        <p id="confirmacao-aviso" class="confirmacao-aviso"></p>
+        <div class="acoes">
+          <a class="botao" href="simulacao.html">Ver você na simulação →</a>
+          <button type="button" id="novo-cadastro" class="botao botao--secundario">Cadastrar outra pessoa</button>
+        </div>
       </section>
     </div>
   </main>
@@ -53,5 +139,8 @@
       <p>Bug Hunters · FIAP 1ESOR · Global Solution 2026/2</p>
     </div>
   </footer>
+
+  <script src="js/persistencia.js"></script>
+  <script src="js/formulario.js"></script>
 </body>
 </html>
