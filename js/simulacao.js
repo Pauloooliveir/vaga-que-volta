@@ -22,11 +22,20 @@ const ROTULO_STATUS = {
   encaixe: "Encaixe livre"
 };
 
+// Copia um objeto, propriedade por propriedade.
+function copiarObjeto(objeto) {
+  const copia = {};
+  for (const chave in objeto) {
+    copia[chave] = objeto[chave];
+  }
+  return copia;
+}
+
 // Copia uma lista de objetos, para não alterar os dados originais.
 function copiarLista(lista) {
   const copia = [];
   for (let i = 0; i < lista.length; i++) {
-    copia.push(Object.assign({}, lista[i]));
+    copia.push(copiarObjeto(lista[i]));
   }
   return copia;
 }
@@ -40,7 +49,7 @@ function iniciarEstado() {
   if (typeof vqvLerCadastros === "function") {
     const cadastros = vqvLerCadastros();
     for (let i = 0; i < cadastros.length; i++) {
-      const cadastro = Object.assign({}, cadastros[i]);
+      const cadastro = copiarObjeto(cadastros[i]);
       cadastro.status = "na fila";
       estadoFila.push(cadastro);
     }
@@ -53,10 +62,20 @@ function iniciarEstado() {
 
 // ---------- Regra de realocação (funções puras) ----------
 
+// true quando o paciente pode ir no período ("manha" ou "tarde").
+function temPeriodo(paciente, periodo) {
+  for (let i = 0; i < paciente.periodos.length; i++) {
+    if (paciente.periodos[i] === periodo) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // Explica por que um paciente da mesma especialidade não pode receber o horário.
 // Devolve "" quando ele pode.
 function motivoDescarte(paciente, horario, gatilho) {
-  if (!paciente.periodos.includes(horario.periodo)) {
+  if (!temPeriodo(paciente, horario.periodo)) {
     return "só tem " + NOME_PERIODO[paciente.periodos[0]];
   }
   if (gatilho === "liberado" && paciente.minutosAteUnidade > LIMITE_D1_MIN) {
@@ -363,6 +382,33 @@ function criarItemFila(paciente) {
   return item;
 }
 
+// true quando "a" deve aparecer antes de "b": mais pontos ou, no empate, mais dias de espera.
+function vemAntes(a, b) {
+  const pontosA = pontuar(a);
+  const pontosB = pontuar(b);
+  if (pontosA !== pontosB) {
+    return pontosA > pontosB;
+  }
+  return a.diasEspera > b.diasEspera;
+}
+
+// Ordena por pontuação com inserção: cada paciente entra no fim e
+// vai trocando de lugar com o anterior enquanto tiver prioridade sobre ele.
+function ordenarPorPontos(pacientes) {
+  const ordenados = [];
+  for (let i = 0; i < pacientes.length; i++) {
+    ordenados.push(pacientes[i]);
+    let j = ordenados.length - 1;
+    while (j > 0 && vemAntes(ordenados[j], ordenados[j - 1])) {
+      const anterior = ordenados[j - 1];
+      ordenados[j - 1] = ordenados[j];
+      ordenados[j] = anterior;
+      j--;
+    }
+  }
+  return ordenados;
+}
+
 function renderizarFila() {
   const lista = document.querySelector("#fila");
   const filtro = document.querySelector("#filtro-especialidade").value;
@@ -380,12 +426,10 @@ function renderizarFila() {
   }
 
   // Maior pontuação primeiro: é a ordem em que a regra olha a fila.
-  visiveis.sort(function (a, b) {
-    return pontuar(b) - pontuar(a) || b.diasEspera - a.diasEspera;
-  });
+  const ordenados = ordenarPorPontos(visiveis);
 
-  for (let i = 0; i < visiveis.length; i++) {
-    lista.appendChild(criarItemFila(visiveis[i]));
+  for (let i = 0; i < ordenados.length; i++) {
+    lista.appendChild(criarItemFila(ordenados[i]));
   }
 
   let quantidade = 0;
