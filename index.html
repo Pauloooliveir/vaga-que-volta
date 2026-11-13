@@ -33,7 +33,7 @@
   <main id="conteudo">
     <section class="hero" aria-labelledby="titulo-hero">
       <div class="container">
-        <div>
+        <div class="hero-texto-bloco">
           <h1 class="hero-titulo" id="titulo-hero">
             <span>Cadeira vazia no consultório</span>
             <span>é fila parada lá fora.</span>
@@ -46,97 +46,102 @@
         </div>
 
         <figure class="agenda-exemplo" aria-labelledby="legenda-agenda">
+          <div class="agenda-exemplo-topo">
+            <span class="agenda-exemplo-titulo">Agenda de hoje</span>
+            <span>Ambulatório Centro</span>
+          </div>
           <ol>
             <li class="horario">
               <span class="horario-hora">08:00</span>
               <span class="horario-detalhe">
                 <span class="horario-especialidade">Cardiologia</span>
-                <span class="horario-paciente">Valdir Gomes</span>
-                <span class="selo selo--confirmado">Confirmado</span>
+                <span class="horario-linha">
+                  <span class="horario-paciente">Valdir Gomes</span>
+                  <span class="selo selo--confirmado">Confirmado</span>
+                </span>
               </span>
             </li>
             <li class="horario horario--troca">
               <span class="horario-hora">08:30</span>
               <span class="horario-detalhe">
                 <span class="horario-especialidade">Ortopedia</span>
-                <span class="horario-paciente horario-antes">Neusa Carvalho</span>
-                <span class="horario-paciente horario-novo">Pedro Henrique</span>
-                <span class="selo selo--reaproveitado"><span aria-hidden="true">↻</span> Vaga reaproveitada</span>
+                <span class="horario-linha horario-antes">
+                  <span class="horario-paciente">Neusa Carvalho</span>
+                  <span class="selo selo--faltou">Faltou</span>
+                </span>
+                <span class="horario-linha horario-depois">
+                  <span class="horario-paciente"><span aria-hidden="true">↻ </span>Pedro Henrique</span>
+                  <span class="selo selo--reaproveitado">Vaga reaproveitada</span>
+                </span>
+                <span class="horario-motivo">Risco amarelo, 150 dias de espera e 18 min da unidade. Quem morava mais longe não chegaria a tempo.</span>
               </span>
-              <p class="horario-motivo">Neusa faltou. Pedro tem risco amarelo, espera há 150 dias e mora a 18 min da unidade.</p>
             </li>
             <li class="horario">
               <span class="horario-hora">09:00</span>
               <span class="horario-detalhe">
                 <span class="horario-especialidade">Oftalmologia</span>
-                <span class="horario-paciente">Ivone Teixeira</span>
-                <span class="selo selo--aguardando">Aguardando</span>
+                <span class="horario-linha">
+                  <span class="horario-paciente">Ivone Teixeira</span>
+                  <span class="selo selo--aguardando">Aguardando</span>
+                </span>
               </span>
             </li>
           </ol>
-          <figcaption id="legenda-agenda">Exemplo de agenda com nomes fictícios.</figcaption>
+          <figcaption id="legenda-agenda">Exemplo com nomes fictícios.</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="secao" aria-labelledby="titulo-dado">
-      <div class="container dado">
-        <div>
-          <h2 id="titulo-dado" class="sr-only">O dado</h2>
-          <p class="dado-frase">
-            <span class="dado-numero">45.607</span>
-            consultas com especialista foram perdidas por falta em Porto Alegre em 2025, cerca de 13% das vagas.
-          </p>
+    <section class="problema" aria-labelledby="titulo-problema">
+      <div class="container">
+        <div class="problema-texto">
+          <h2 id="titulo-problema">O problema</h2>
+          <p class="dado-frase">Em 2025, Porto Alegre perdeu <strong class="dado-numero">45.607</strong> consultas com especialista porque o paciente faltou. São cerca de 13% das vagas.</p>
           <!-- TODO (Frente 2): trocar pelo link oficial conferido -->
           <p class="dado-fonte">Fonte: <span class="placeholder">[link oficial a conferir]</span></p>
+          <!-- Texto provisório: a Frente 2 envia a versão final -->
+          <p>Quem precisa de um especialista no SUS espera meses. Enquanto isso, parte das consultas marcadas fica vazia: o paciente esquece, não consegue ir ou desiste e não avisa. A vaga existe, mas ninguém da fila fica sabendo a tempo.</p>
         </div>
-        <div>
+
+        <figure class="sala" aria-labelledby="legenda-sala">
           <div class="cadeiras" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span class="vazia"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span class="vazia"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="vazia"></span><span></span>
+            <span></span><span></span><span class="vazia"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span class="vazia"></span><span></span><span></span><span></span>
+            <span></span><span class="vazia"></span><span></span><span></span><span></span><span></span><span></span><span class="vazia"></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span class="vazia"></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span class="vazia"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span class="vazia"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="vazia"></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span class="vazia"></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span class="vazia"></span><span></span><span></span><span></span><span></span><span></span><span></span>
           </div>
-          <p class="cadeiras-legenda">De cada 100 consultas, 13 ficaram com a cadeira vazia.</p>
-        </div>
+          <figcaption id="legenda-sala" class="sala-legenda">
+            <span class="sala-chave"><span class="chave chave--ocupada" aria-hidden="true"></span>Consulta feita</span>
+            <span class="sala-chave"><span class="chave chave--vazia" aria-hidden="true"></span>Cadeira vazia: 13 de cada 100</span>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="secao" aria-labelledby="titulo-problema">
-      <div class="container">
-        <h2 id="titulo-problema">O problema</h2>
-        <!-- Texto provisório: a Frente 2 envia a versão final -->
-        <p>Quem precisa de um especialista no SUS espera meses na fila. Enquanto isso, parte das consultas marcadas fica vazia: o paciente esquece, não consegue ir ou desiste e não avisa. O sistema até sabe que a vaga ficou livre, mas não tem como entregá-la a tempo para quem continua esperando. A consulta é perdida e a fila não anda.</p>
-      </div>
-    </section>
-
-    <section class="secao" aria-labelledby="titulo-como">
+    <section class="como" aria-labelledby="titulo-como">
       <div class="container">
         <h2 id="titulo-como">Como funciona</h2>
         <ol class="passos">
           <li>
-            <div>
-              <h3>Confirmar ou liberar</h3>
-              <p>No dia anterior, o paciente confirma a consulta ou libera a vaga com um toque.</p>
-            </div>
+            <p class="passo-quando">Na véspera</p>
+            <h3>O paciente confirma ou libera</h3>
+            <p>Um aviso pergunta se ele vai à consulta. Se não puder, libera a vaga com um toque.</p>
           </li>
           <li>
-            <div>
-              <h3>A vaga volta</h3>
-              <p>A vaga liberada, ou perdida por falta no dia, volta para o sistema em vez de ficar vazia.</p>
-            </div>
+            <p class="passo-quando">Logo em seguida</p>
+            <h3>A vaga volta para o sistema</h3>
+            <p>A vaga liberada, ou perdida porque o paciente não apareceu, não fica vazia.</p>
           </li>
           <li>
-            <div>
-              <h3>Alguém da fila recebe</h3>
-              <p>Ela vai para quem está na fila da mesma especialidade e consegue chegar a tempo.</p>
-            </div>
+            <p class="passo-quando">Minutos depois</p>
+            <h3>Alguém da fila recebe</h3>
+            <p>Vai para quem espera pela mesma especialidade e consegue chegar a tempo. A tela explica a escolha.</p>
           </li>
         </ol>
       </div>
@@ -147,8 +152,8 @@
         <h2 id="titulo-chamada">Veja uma vaga voltar</h2>
         <p>Marque uma falta na agenda de demonstração e veja para quem a vaga vai, e por quê.</p>
         <div class="acoes">
-          <a class="botao" href="simulacao.html">Ver a simulação</a>
-          <a class="botao botao--secundario" href="fila.html">Entrar na fila</a>
+          <a class="botao botao--invertido" href="simulacao.html">Ver a simulação</a>
+          <a class="botao botao--contorno-claro" href="fila.html">Entrar na fila</a>
         </div>
       </div>
     </section>

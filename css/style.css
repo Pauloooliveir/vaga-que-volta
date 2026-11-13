@@ -35,9 +35,10 @@
   --fonte-titulo: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --escala-fonte: 1; /* 1 · 1.15 · 1.3 (painel de acessibilidade, Etapa 4) */
 
-  --texto-p: 1rem;
+  --texto-pp: 0.875rem;
+  --texto-p: 1.0625rem;
   --texto-m: 1.25rem;
-  --texto-g: 1.5625rem;
+  --texto-g: 1.75rem;
   --texto-gg: 2.25rem;
   --texto-hero: 2.5rem;
 
@@ -48,10 +49,11 @@
   --esp-4: 1.5rem;
   --esp-5: 2.5rem;
   --esp-6: 4rem;
+  --esp-7: 6rem;
   --raio-p: 4px;
-  --raio-m: 10px;
+  --raio-m: 12px;
   --largura-max: 72rem;
-  --largura-texto: 38rem;
+  --largura-texto: 36rem;
 }
 
 /* Alto contraste (ligado pelo painel de acessibilidade na Etapa 4) */
@@ -102,7 +104,7 @@ body {
   color: var(--cor-texto);
   font-family: var(--fonte-texto);
   font-size: var(--texto-p);
-  line-height: 1.55;
+  line-height: 1.6;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -117,18 +119,22 @@ h2,
 h3 {
   font-family: var(--fonte-titulo);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
   margin: 0 0 var(--esp-3);
   text-wrap: balance;
 }
 
 h1 {
   font-size: var(--texto-gg);
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
 h2 {
   font-size: var(--texto-g);
+  font-weight: 800;
+  letter-spacing: -0.025em;
 }
 
 h3 {
@@ -202,10 +208,6 @@ svg {
 }
 
 /* ---------- 4. Cabeçalho e menu ---------- */
-.topo {
-  border-bottom: 1px solid var(--cor-linha);
-}
-
 .topo .container {
   display: flex;
   flex-wrap: wrap;
@@ -213,7 +215,7 @@ svg {
   justify-content: space-between;
   gap: var(--esp-2) var(--esp-4);
   padding-top: var(--esp-3);
-  padding-bottom: var(--esp-3);
+  padding-bottom: var(--esp-2);
 }
 
 .marca {
@@ -255,21 +257,21 @@ svg {
 .menu a {
   display: block;
   padding: var(--esp-2) var(--esp-1);
-  border-radius: var(--raio-p);
   color: var(--cor-texto);
   text-decoration: none;
   font-weight: 700;
+  font-size: 1rem;
+  border-bottom: 3px solid transparent;
 }
 
 .menu a:hover {
-  background: var(--cor-destaque-claro);
+  border-bottom-color: var(--cor-linha);
   color: var(--cor-texto);
 }
 
 .menu a[aria-current="page"] {
   color: var(--cor-destaque);
-  box-shadow: inset 0 -3px 0 var(--cor-destaque);
-  border-radius: 0;
+  border-bottom-color: var(--cor-destaque);
 }
 
 /* ---------- 5. Botões ---------- */
@@ -278,7 +280,7 @@ svg {
   align-items: center;
   justify-content: center;
   gap: var(--esp-2);
-  min-height: 2.75rem;
+  min-height: 3rem;
   padding: var(--esp-2) var(--esp-4);
   border: 2px solid var(--cor-destaque);
   border-radius: var(--raio-p);
@@ -307,6 +309,30 @@ svg {
   color: var(--cor-destaque-escuro);
 }
 
+/* Botões sobre a faixa verde */
+.botao--invertido {
+  background: var(--cor-fundo);
+  border-color: var(--cor-fundo);
+  color: var(--cor-destaque-escuro);
+}
+
+.botao--invertido:hover {
+  background: var(--cor-superficie);
+  border-color: var(--cor-superficie);
+  color: var(--cor-texto);
+}
+
+.botao--contorno-claro {
+  background: transparent;
+  border-color: var(--cor-sobre-destaque);
+  color: var(--cor-sobre-destaque);
+}
+
+.botao--contorno-claro:hover {
+  background: var(--cor-destaque-escuro);
+  border-color: var(--cor-sobre-destaque);
+}
+
 .botao--pequeno {
   min-height: 2.25rem;
   padding: var(--esp-1) var(--esp-3);
@@ -324,9 +350,9 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.125rem var(--esp-2);
+  padding: 0.0625rem var(--esp-2);
   border-radius: var(--raio-p);
-  font-size: 0.875rem;
+  font-size: var(--texto-pp);
   font-weight: 700;
   line-height: 1.5;
   white-space: nowrap;
@@ -394,19 +420,9 @@ svg {
   color: var(--cor-fundo);
 }
 
-/* ---------- 7. Seções e cartões ---------- */
+/* ---------- 7. Peças comuns das páginas internas ---------- */
 .secao {
   padding: var(--esp-5) 0;
-}
-
-.secao + .secao {
-  border-top: 1px solid var(--cor-linha);
-}
-
-.secao-intro {
-  color: var(--cor-texto-suave);
-  font-size: var(--texto-m);
-  line-height: 1.45;
 }
 
 .cartao {
@@ -417,7 +433,14 @@ svg {
 }
 
 .cabecalho-pagina {
-  padding: var(--esp-5) 0 var(--esp-3);
+  padding: var(--esp-5) 0 var(--esp-4);
+  border-bottom: 2px solid var(--cor-texto);
+  margin-bottom: var(--esp-2);
+}
+
+.cabecalho-pagina h1 {
+  font-size: var(--texto-hero);
+  line-height: 1.02;
 }
 
 .cabecalho-pagina p {
@@ -426,12 +449,17 @@ svg {
   line-height: 1.45;
 }
 
+.cabecalho-pagina p:last-child {
+  margin-bottom: 0;
+}
+
 .aviso {
   border-left: 4px solid var(--cor-destaque);
   background: var(--cor-superficie);
   padding: var(--esp-3) var(--esp-4);
   border-radius: 0 var(--raio-p) var(--raio-p) 0;
   max-width: var(--largura-texto);
+  margin-top: var(--esp-4);
 }
 
 .aviso p:last-child {
@@ -456,8 +484,8 @@ svg {
 .hero-titulo {
   font-size: var(--texto-hero);
   font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
   margin-bottom: var(--esp-4);
 }
 
@@ -471,19 +499,36 @@ svg {
 
 .hero-texto {
   font-size: var(--texto-m);
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--cor-texto-suave);
   margin-bottom: var(--esp-4);
 }
 
-/* Ficha de agenda ilustrativa: o momento marcante da página */
+/* Ficha de agenda: o momento marcante da página */
 .agenda-exemplo {
   margin: 0;
   background: var(--cor-superficie);
   border: 1px solid var(--cor-linha);
   border-radius: var(--raio-m);
-  padding: var(--esp-3);
-  align-self: start;
+  padding: var(--esp-2) var(--esp-3) var(--esp-3);
+  box-shadow: 0 1px 0 var(--cor-linha), 0 18px 40px -24px rgba(20, 32, 31, 0.35);
+}
+
+.agenda-exemplo-topo {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  padding: var(--esp-2) var(--esp-2) var(--esp-3);
+  border-bottom: 2px solid var(--cor-texto);
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+}
+
+.agenda-exemplo-titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--cor-texto);
 }
 
 .agenda-exemplo ol {
@@ -494,8 +539,8 @@ svg {
 
 .horario {
   display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  gap: var(--esp-1) var(--esp-3);
+  grid-template-columns: 3.75rem 1fr;
+  gap: var(--esp-3);
   padding: var(--esp-3) var(--esp-2);
   border-bottom: 1px solid var(--cor-linha);
 }
@@ -506,23 +551,27 @@ svg {
 
 .horario-hora {
   font-family: var(--fonte-titulo);
-  font-weight: 700;
+  font-weight: 800;
   font-size: var(--texto-m);
   font-variant-numeric: tabular-nums;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .horario-detalhe {
+  display: grid;
+  gap: var(--esp-1);
+}
+
+.horario-especialidade {
+  font-size: var(--texto-pp);
+  color: var(--cor-texto-suave);
+}
+
+.horario-linha {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--esp-1) var(--esp-2);
-}
-
-.horario-especialidade {
-  width: 100%;
-  font-size: 0.875rem;
-  color: var(--cor-texto-suave);
 }
 
 .horario-paciente {
@@ -532,37 +581,51 @@ svg {
 .horario--troca {
   background: var(--cor-destaque-claro);
   border-radius: var(--raio-p);
+  border-bottom-color: transparent;
 }
 
-.horario--troca .horario-antes {
+.horario-antes .horario-paciente {
   text-decoration: line-through;
+  text-decoration-thickness: 2px;
   color: var(--cor-texto-suave);
   font-weight: 400;
 }
 
+.horario-depois .horario-paciente {
+  color: var(--cor-destaque-escuro);
+  font-size: 1.125rem;
+}
+
 .horario-motivo {
-  grid-column: 2;
-  font-size: 0.875rem;
+  font-size: var(--texto-pp);
+  line-height: 1.45;
   color: var(--cor-texto-suave);
-  margin: 0;
 }
 
 .agenda-exemplo figcaption {
-  font-size: 0.875rem;
+  font-size: var(--texto-pp);
   color: var(--cor-texto-suave);
   padding: var(--esp-2) var(--esp-2) 0;
 }
 
-/* Animação única: a vaga perdida volta para alguém da fila */
+/* Animação única: primeiro a falta, depois a vaga volta para alguém da fila.
+   Quem prefere menos movimento vê direto o estado final. */
 @media (prefers-reduced-motion: no-preference) {
   .horario--troca {
-    animation: vaga-volta 900ms 900ms both cubic-bezier(0.2, 0.7, 0.2, 1);
+    animation: vaga-volta 700ms 1600ms both ease-out;
   }
 
-  .horario--troca .horario-novo,
-  .horario--troca .horario-motivo,
-  .horario--troca .selo--reaproveitado {
-    animation: aparece 500ms 1500ms both ease-out;
+  .horario-antes .horario-paciente {
+    animation: risca 500ms 1300ms both ease-out;
+  }
+
+  .horario-depois,
+  .horario-motivo {
+    animation: aparece 600ms 2000ms both cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .horario-motivo {
+    animation-delay: 2300ms;
   }
 }
 
@@ -575,10 +638,21 @@ svg {
   }
 }
 
+@keyframes risca {
+  from {
+    text-decoration-color: transparent;
+    color: var(--cor-texto);
+    font-weight: 700;
+  }
+  to {
+    text-decoration-color: currentColor;
+  }
+}
+
 @keyframes aparece {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -586,108 +660,171 @@ svg {
   }
 }
 
-/* ---------- 9. Início: o dado ---------- */
-.dado {
-  display: grid;
-  gap: var(--esp-4);
-  align-items: center;
+/* ---------- 9. Início: o problema e a sala de espera ---------- */
+.problema {
+  background: var(--cor-superficie);
+  border-top: 1px solid var(--cor-linha);
+  border-bottom: 1px solid var(--cor-linha);
+  padding: var(--esp-6) 0;
 }
 
-.dado-numero {
-  font-family: var(--fonte-titulo);
-  font-weight: 800;
-  font-size: var(--texto-gg);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-  display: block;
-  margin-bottom: var(--esp-2);
+.problema .container {
+  display: grid;
+  gap: var(--esp-5);
 }
 
 .dado-frase {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
   font-size: var(--texto-m);
-  line-height: 1.4;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.dado-numero {
+  display: block;
+  font-weight: 800;
+  font-size: 3.5rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--cor-destaque);
+  margin: var(--esp-2) 0;
 }
 
 .dado-fonte {
-  font-size: 0.875rem;
+  font-size: var(--texto-pp);
   color: var(--cor-texto-suave);
+  margin-bottom: var(--esp-4);
 }
 
-/* 100 cadeiras; as 13 últimas ficam vazias (13%) */
+.sala {
+  margin: 0;
+  align-self: center;
+}
+
+/* 100 cadeiras; 13 vazias, espalhadas como numa sala de verdade */
 .cadeiras {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: 5px;
-  max-width: 17rem;
+  gap: 6px;
+  max-width: 24rem;
 }
 
-.cadeiras span {
+.cadeiras span,
+.chave {
   aspect-ratio: 1;
-  border-radius: 3px 3px 1px 1px;
+  border-radius: 40% 40% 3px 3px;
   background: var(--cor-destaque);
 }
 
-.cadeiras span:nth-child(n + 88) {
+.cadeiras .vazia,
+.chave--vazia {
   background: transparent;
-  border: 2px solid var(--cor-texto);
+  box-shadow: inset 0 0 0 2px var(--cor-texto);
 }
 
-.cadeiras-legenda {
-  font-size: 0.875rem;
+.sala-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2) var(--esp-4);
+  margin-top: var(--esp-3);
+  font-size: var(--texto-pp);
   color: var(--cor-texto-suave);
-  margin-top: var(--esp-2);
 }
 
-/* ---------- 10. Início: como funciona ---------- */
+.sala-chave {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+.chave {
+  display: inline-block;
+  width: 0.875rem;
+}
+
+/* ---------- 10. Início: como funciona (linha do tempo) ---------- */
+.como {
+  padding: var(--esp-6) 0;
+}
+
 .passos {
   list-style: none;
-  counter-reset: passo;
-  margin: var(--esp-4) 0 0;
+  margin: var(--esp-5) 0 0;
   padding: 0;
   display: grid;
-  gap: var(--esp-4);
 }
 
 .passos li {
-  counter-increment: passo;
-  display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  gap: var(--esp-3);
-  align-items: start;
+  position: relative;
+  padding: 0 0 var(--esp-5) var(--esp-5);
+  border-left: 2px solid var(--cor-destaque);
+  margin-left: 0.4375rem;
 }
 
+.passos li:last-child {
+  padding-bottom: 0;
+  border-left-color: transparent;
+}
+
+/* Marco da linha do tempo */
 .passos li::before {
-  content: counter(passo);
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 2px solid var(--cor-destaque);
+  content: "";
+  position: absolute;
+  left: -0.5625rem;
+  top: 0.2rem;
+  width: 1rem;
+  height: 1rem;
   border-radius: 50%;
-  font-family: var(--fonte-titulo);
-  font-weight: 800;
+  background: var(--cor-fundo);
+  border: 3px solid var(--cor-destaque);
+}
+
+.passos li:last-child::before {
+  background: var(--cor-destaque);
+}
+
+.passo-quando {
+  font-weight: 700;
   color: var(--cor-destaque);
+  margin-bottom: var(--esp-1);
 }
 
 .passos h3 {
-  margin-bottom: var(--esp-1);
-  padding-top: 0.35rem;
+  margin-bottom: var(--esp-2);
 }
 
-.passos p {
+.passos p:last-child {
   margin: 0;
   color: var(--cor-texto-suave);
+  max-width: 26rem;
 }
 
+/* ---------- 11. Início: chamada final ---------- */
 .chamada-final {
-  padding: var(--esp-5) 0 var(--esp-6);
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+  padding: var(--esp-6) 0;
 }
 
-/* ---------- 11. Simulação (base para a Etapa 2) ---------- */
+.chamada-final h2 {
+  font-size: var(--texto-gg);
+}
+
+.chamada-final p {
+  font-size: var(--texto-m);
+  margin-bottom: var(--esp-4);
+}
+
+.chamada-final :focus-visible {
+  outline-color: var(--cor-sobre-destaque);
+}
+
+/* ---------- 12. Simulação (base para a Etapa 2) ---------- */
 .simulacao-layout {
   display: grid;
-  gap: var(--esp-5);
+  gap: 0 var(--esp-5);
 }
 
 .grade-agenda {
@@ -696,7 +833,7 @@ svg {
   grid-template-columns: 1fr;
 }
 
-/* ---------- 12. Formulário (base para a Etapa 3) ---------- */
+/* ---------- 13. Formulário (base para a Etapa 3) ---------- */
 .formulario {
   display: grid;
   gap: var(--esp-4);
@@ -722,7 +859,7 @@ svg {
   border: 2px solid var(--cor-texto-suave);
   border-radius: var(--raio-p);
   padding: var(--esp-2) var(--esp-3);
-  min-height: 2.75rem;
+  min-height: 3rem;
   width: 100%;
 }
 
@@ -741,18 +878,16 @@ svg {
   display: none;
 }
 
-/* ---------- 13. Sobre ---------- */
-.sobre-secoes {
-  display: grid;
-  gap: 0;
+/* ---------- 14. Sobre ---------- */
+.sobre-secoes .secao + .secao {
+  border-top: 1px solid var(--cor-linha);
 }
 
 .equipe {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: var(--esp-2);
+  max-width: var(--largura-texto);
 }
 
 .equipe li {
@@ -761,7 +896,6 @@ svg {
   gap: var(--esp-3);
   padding: var(--esp-2) 0;
   border-bottom: 1px solid var(--cor-linha);
-  max-width: var(--largura-texto);
 }
 
 .lista-simples {
@@ -774,21 +908,27 @@ svg {
   margin-top: var(--esp-2);
 }
 
-/* ---------- 14. Rodapé ---------- */
+/* ---------- 15. Rodapé ---------- */
 .rodape {
   border-top: 1px solid var(--cor-linha);
   padding: var(--esp-4) 0;
-  font-size: 0.875rem;
+  font-size: var(--texto-pp);
   color: var(--cor-texto-suave);
+}
+
+.chamada-final + .rodape,
+main:has(.chamada-final) + .rodape {
+  border-top: 0;
 }
 
 .rodape p {
   margin: 0;
 }
 
-/* ---------- 15. Tablet: 768px ---------- */
+/* ---------- 16. Tablet: 768px ---------- */
 @media (min-width: 768px) {
   :root {
+    --texto-g: 2rem;
     --texto-gg: 2.75rem;
     --texto-hero: 3.5rem;
   }
@@ -797,38 +937,51 @@ svg {
     padding: 0 var(--esp-4);
   }
 
+  .topo .container {
+    padding-top: var(--esp-4);
+  }
+
   .menu {
     width: auto;
   }
 
+  .menu ul {
+    gap: var(--esp-3);
+  }
+
   .menu a {
-    padding: var(--esp-2) var(--esp-3);
+    padding: var(--esp-2) var(--esp-1);
   }
 
   .secao {
     padding: var(--esp-6) 0;
   }
 
-  .dado {
-    grid-template-columns: 1fr auto;
-    gap: var(--esp-5);
-  }
-
-  .cadeiras {
-    width: 15rem;
+  .dado-numero {
+    font-size: 4.5rem;
   }
 
   .passos {
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--esp-5);
+    gap: var(--esp-4);
   }
 
-  .passos li {
-    grid-template-columns: 1fr;
+  /* No tablet e no desktop a linha do tempo fica na horizontal */
+  .passos li,
+  .passos li:last-child {
+    margin-left: 0;
+    padding: var(--esp-4) var(--esp-3) 0 0;
+    border-left: 0;
+    border-top: 2px solid var(--cor-destaque);
   }
 
-  .passos h3 {
-    padding-top: 0;
+  .passos li:last-child {
+    border-top-style: dashed;
+  }
+
+  .passos li::before {
+    left: 0;
+    top: -0.5625rem;
   }
 
   .grade-agenda {
@@ -836,20 +989,46 @@ svg {
   }
 }
 
-/* ---------- 16. Desktop: 1024px ---------- */
+/* ---------- 17. Desktop: 1024px ---------- */
 @media (min-width: 1024px) {
   :root {
-    --texto-hero: 4.25rem;
+    --texto-p: 1.125rem;
+    --texto-hero: 4.5rem;
   }
 
   .hero {
-    padding: var(--esp-6) 0;
+    padding: var(--esp-6) 0 var(--esp-7);
   }
 
   .hero .container {
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 1.1fr 1fr;
     align-items: center;
     gap: var(--esp-6);
+  }
+
+  .problema {
+    padding: var(--esp-7) 0;
+  }
+
+  .problema .container {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--esp-6);
+    align-items: center;
+  }
+
+  .cadeiras {
+    gap: 8px;
+    max-width: 28rem;
+    margin-left: auto;
+  }
+
+  .sala-legenda {
+    justify-content: flex-end;
+  }
+
+  .como,
+  .chamada-final {
+    padding: var(--esp-7) 0;
   }
 
   .simulacao-layout {
